@@ -3,6 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 const hindSiliguri = Hind_Siliguri({
   variable: "--font-noto-bengali",
@@ -29,6 +30,8 @@ export default function RootLayout({
         <Navbar />
 
         {children}
+
+        <Footer/>
       </body>
     </html>
   );
