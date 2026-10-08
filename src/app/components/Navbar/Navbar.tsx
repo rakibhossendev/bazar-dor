@@ -37,19 +37,19 @@ export default async function Navbar() {
                     <div className="flex items-center justify-between gap-4">
 
                         <div className="flex min-w-0 items-center gap-2">
-                            <div className="shrink-0 rounded-2xl bg-[var(--primary)] p-3 sm:p-4">
+                            <div className="shrink-0 rounded-2xl bg-[#05893E] p-3 sm:p-4">
                                 <Image src={NavbarImage} width={20} height={20} alt="Navbar logo" />
                             </div>
 
                             <div className="min-w-0">
                                 <h1 className="truncate text-lg font-bold sm:text-xl">বাজার দর</h1>
-                                <DateDisplay />
+                                <DateDisplay className="text-sm text-gray-400" />
                             </div>
                         </div>
 
                         <div className="flex shrink-0 items-center">
                             <button className="cursor-pointer px-2 py-3 text-sm font-bold sm:mx-2 sm:py-4 sm:text-base">সাইন ইন</button>
-                            <button className="cursor-pointer rounded px-3 py-2 text-sm font-bold text-white shadow-sm shadow-green-600 bg-[var(--primary)] sm:px-4 sm:text-base">সাইন আপ</button>
+                            <button className="cursor-pointer rounded px-3 py-2 text-sm font-bold text-white shadow-sm shadow-green-600 bg-[#05893E] sm:px-4 sm:text-base">সাইন আপ</button>
                         </div>
                     </div>
 
@@ -57,25 +57,25 @@ export default async function Navbar() {
             </div>
 
 
-            <div className=" shadow-sm bg-[#FFFFFF] ">
-                <div className="container mx-auto flex gap-6 mt-0.5 py-1 sm:py-2 px-4 sm:px-6">
-
-                    {getProductCategories.map(Item => <NavCategories key={Item.id} data={Item}></NavCategories>)}
+            <div className="w-full bg-[#FFFFFF] shadow-sm">
+                <div className="container mx-auto flex w-full gap-4 overflow-x-auto px-4 py-1 sm:gap-6 sm:px-6 sm:py-2 scrollbar-hide">
+                    {getProductCategories.map((item) => (
+                        <NavCategories key={item.id} data={item} />
+                    ))}
                 </div>
-
             </div>
 
 
             <div className="w-full overflow-hidden py-2 bg-[#FFFFFF] shadow-sm mt-0.5">
                 <Marquee pauseOnHover speed={100} gradient={false}>
-                   
+
                     <div className="flex items-center gap-8 whitespace-nowrap">
-                        
+
                         {getProductData.map((item) => (
                             <div key={item.id} className="flex items-center gap-2">
                                 <p className="text-sm font-medium cursor-pointer">{item.nameBn}</p>
                                 <p className="text-sm font-medium cursor-pointer">{item.today} টাকা/কেজি</p>
-                                <p className={`text-sm font-medium cursor-pointer ${item.change.dir === "up" ? "text-red-700": "text-green-700"}`}> <span className="text-xl">{item.change.dir === "up" ? "▲" : "▼"}</span> {Math.abs(item.change.pct)} %</p>
+                                <p className={`text-sm font-medium cursor-pointer ${item.change.dir === "up" ? "text-red-700" : "text-green-700"}`}> <span className="text-xl">{item.change.dir === "up" ? "▲" : "▼"}</span> {Math.abs(item.change.pct)} %</p>
                             </div>
                         ))}
                     </div>

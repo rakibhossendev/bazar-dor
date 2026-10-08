@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-export default function DisplayDate() {
+interface ClassNameprops{
+  className?: string
+}
+export default function DisplayDate({className}: ClassNameprops) {
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -18,5 +21,5 @@ export default function DisplayDate() {
     return () => clearTimeout(timer);
   }, []);
 
-  return <p className="text-sm text-gray-500">{date || "তারিখ লোড হচ্ছে..."}</p>;
+  return <p className={className}>{date || "তারিখ লোড হচ্ছে..."}</p>;
 }
