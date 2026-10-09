@@ -30,11 +30,6 @@ export default async function CategoryByProduct({ params, }: { params: Promise<{
 
                 <SortCard getProductData={getProductByCategories}></SortCard>
 
-                <p className="mt-5 text-sm text-gray-500"> মোট {getProductByCategories.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
-                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {getProductByCategories.map((item) => (<ProductCard key={item.id} productData={item} />))}
-                </div>
-
             </div>
         </section>
     )
