@@ -15,8 +15,8 @@ interface ChangeType{
 interface MarketType{
     market: string;
     division: string;
-    min: string;
-    max: string;
+    min: number;
+    max: number;
 }
 
 export interface ProductCommonDataType{

@@ -1,7 +1,9 @@
 'use client'
 
 import { signOut, useSession } from "@/lib/auth-client"
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
+import { toast } from "react-toastify";
 
 interface ProfileCardProps{
     isShowAvatar: boolean,
@@ -9,10 +11,13 @@ interface ProfileCardProps{
 }
 
 export default function ProfileCard({isShowAvatar,updateShowAvatar}: ProfileCardProps) {
+    const router = useRouter()
     const { data: session } = useSession();
     const hanldeSignOut = () => {
         signOut()
         updateShowAvatar(!isShowAvatar);
+        toast.success("Logout Successfully");
+        router.push("/")
     }
     
     return (

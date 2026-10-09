@@ -1,4 +1,5 @@
 import { converUnitName } from "@/app/components/ProductCard/ProductCard";
+import ProductDetailsCard from "@/app/components/productDetailsCard/ProductDetailsCard";
 import { ProductCommonDataType } from "@/TypeScript/Type"
 import Link from "next/link";
 
@@ -24,21 +25,21 @@ export default async function ProductDetails({ params, }: { params: Promise<{ pr
                 <span className="font-medium text-gray-800">{productDetails.nameBn}</span>
             </div>
 
-            <div className="rounded-2xl bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md sm:p-6">
+            <div className="rounded-2xl mt-5 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md sm:p-6">
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                     <div className="flex min-w-0 flex-1 items-start gap-3 sm:gap-5">
                         <p className="shrink-0 text-3xl sm:text-4xl">{productDetails.image}</p>
 
                         <div className="min-w-0 flex-1">
-                            <h1 className="text-lg font-bold leading-snug text-gray-900 sm:text-2xl">{productDetails.categoryNameBn}</h1>
-                            <p className="mt-2 break-words text-sm leading-6 text-gray-700"> প্রতি {converUnitName(productDetails.unit)} ·{" "} {productDetails.nameBn}</p>
+                            <h1 className="text-lg font-bold leading-snug text-gray-900 sm:text-2xl">{productDetails.nameBn}</h1>
+                            <p className="mt-2 wrap-words text-sm leading-6 text-gray-700"> প্রতি {converUnitName(productDetails.unit)} ·{" "} {productDetails.nameBn}</p>
                             <p className="mt-2 text-sm leading-6 text-gray-600">
                                 {productDetails.change.dir === "up" ? (
                                     <>
-                                        <span className="mr-1 font-semibold text-red-600">▲</span>
+                                        
                                         গতকালের তুলনায় আজ দাম বেড়েছে{" "}
-                                        <span className="font-semibold text-red-600">
-                                            {productDetails.today - productDetails.yesterday} টাকা
+                                        <span className="font-semibold">
+                                            {(productDetails.today - productDetails.yesterday).toLocaleString("bn-BD")} টাকা
                                         </span>
                                     </>
                                 ) : (
@@ -76,7 +77,7 @@ export default async function ProductDetails({ params, }: { params: Promise<{ pr
                 </div>
             </div>
 
-
+        <ProductDetailsCard productDetails={productDetails}></ProductDetailsCard>
         
         </section>
     )
