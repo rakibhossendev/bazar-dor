@@ -4,8 +4,13 @@ import { ProductCommonDataType } from "@/TypeScript/Type"
 import Link from "next/link";
 
 const productFilterDataType = async (producId: string): Promise<ProductCommonDataType> => {
-    const response = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${producId}`);
+    const response = await fetch(`${process.env.PRODUCT_DETAILS_API}/${producId}`);
+    console.log("Status:", response.status);
+
     const data = await response.json();
+
+    console.log("API response:", data);
+    console.log("Change:", data?.change);
 
     return data;
 }
@@ -13,7 +18,7 @@ const productFilterDataType = async (producId: string): Promise<ProductCommonDat
 export default async function ProductDetails({ params, }: { params: Promise<{ productId: string }> }) {
     const { productId } = await params;
     const productDetails = await productFilterDataType(productId);
-
+    console.log(productDetails.change.dir)
     return (
         <section className="container mx-auto">
 
@@ -36,7 +41,7 @@ export default async function ProductDetails({ params, }: { params: Promise<{ pr
                             <p className="mt-2 text-sm leading-6 text-gray-600">
                                 {productDetails.change.dir === "up" ? (
                                     <>
-                                        
+
                                         গতকালের তুলনায় আজ দাম বেড়েছে{" "}
                                         <span className="font-semibold">
                                             {(productDetails.today - productDetails.yesterday).toLocaleString("bn-BD")} টাকা
@@ -47,7 +52,7 @@ export default async function ProductDetails({ params, }: { params: Promise<{ pr
                                         <span className="mr-1 font-semibold text-green-600">▼</span>
                                         গতকালের তুলনায় আজ দাম কমেছে{" "}
                                         <span className="font-semibold text-green-600">
-                                            {productDetails.yesterday - productDetails.today} টাকা
+                                            {Math.abs(productDetails.yesterday - productDetails.today)} টাকা
                                         </span>
                                     </>
                                 )}
@@ -62,23 +67,23 @@ export default async function ProductDetails({ params, }: { params: Promise<{ pr
                         <p className="mt-1 text-xs text-gray-500">/ {converUnitName(productDetails.unit)}</p>
 
                         <p className={`mt-2 text-sm font-semibold ${productDetails.change.dir === "up"
-                                    ? "text-red-600"
-                                    
-                                    : productDetails.change.dir === "down"
-                                        ? "text-green-600"
-                                        : "text-gray-500"
-                                }`}
+                            ? "text-red-600"
+
+                            : productDetails.change.dir === "down"
+                                ? "text-green-600"
+                                : "text-gray-500"
+                            }`}
                         >
                             {productDetails.change.dir === "up" ? "▲" : productDetails.change.dir === "down" ? "▼" : ""}
-                            {" "}{productDetails.change.pct}%
+                            {" "}{Math.abs(productDetails.change.pct)}%
                         </p>
                     </div>
 
                 </div>
             </div>
 
-        <ProductDetailsCard productDetails={productDetails}></ProductDetailsCard>
-        
+            <ProductDetailsCard productDetails={productDetails}></ProductDetailsCard>
+
         </section>
     )
 }

@@ -6,6 +6,7 @@ import { ProductCategoriesDataType, ProductCommonDataType } from "@/TypeScript/T
 import NavCategories from "./NavCategories";
 import Marquee from "react-fast-marquee";
 import AuthButton from "./AuthButton";
+import Link from "next/link";
 
 const productsCategoriesAPIResponse = async (): Promise<ProductCategoriesDataType[]> => {
 	const response = await fetch(`${process.env.ALL_CATEGORIES_API}`);
@@ -39,7 +40,9 @@ export default async function Navbar() {
 
 						<div className="flex min-w-0 items-center gap-2">
 							<div className="shrink-0 rounded-2xl bg-[#05893E] p-3 sm:p-4">
+								<Link className="cursor-pointer" href={"/"}>
 								<Image src={NavbarImage} width={20} height={20} alt="Navbar logo" />
+								</Link>
 							</div>
 
 							<div className="min-w-0">

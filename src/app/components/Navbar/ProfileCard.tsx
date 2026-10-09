@@ -1,6 +1,7 @@
 'use client'
 
 import { signOut, useSession } from "@/lib/auth-client"
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
@@ -31,10 +32,12 @@ export default function ProfileCard({isShowAvatar,updateShowAvatar}: ProfileCard
             
             <div className="space-y-1 pt-3">
                 
+                <Link href={"/profile"}>
                 <button type="button" className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-[#E8F7EF] hover:text-[#05893E] active:scale-[0.98]">
                     <span>👤</span>
                     <span>আমার প্রোফাইল</span>
                 </button>
+                </Link>
 
                 <button type="button" onClick={hanldeSignOut} className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-red-600 transition-colors duration-200 hover:bg-red-50 active:scale-[0.98]">
                     <span>↩</span>

@@ -16,5 +16,5 @@ export default async function proxy(request: NextRequest){
 }
 
 export const config = {
-    matcher: ["/productDetails/:productId"]
+    matcher: ["/productDetails/:productId","/profile/:path"]
 }
