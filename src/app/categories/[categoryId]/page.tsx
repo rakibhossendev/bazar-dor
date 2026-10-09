@@ -1,4 +1,3 @@
-import ProductCard from "@/app/components/ProductCard/ProductCard";
 import SortCard from "@/app/components/Sorting/SortingCard";
 import { ProductCommonDataType } from "@/TypeScript/Type";
 
