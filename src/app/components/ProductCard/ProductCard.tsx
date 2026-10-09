@@ -1,11 +1,12 @@
 import { ProductCommonDataType } from "@/TypeScript/Type"
+import Link from "next/link"
 
 
 interface ProductCardProps {
     productData: ProductCommonDataType
 }
 
-const converUnitName = (name: string): string => {
+export const converUnitName = (name: string): string => {
     if(name === "dozen"){
         return "প্রতি ডজন"
     }else if(name === "litre"){
@@ -18,7 +19,7 @@ export default function ProductCard({ productData }: ProductCardProps) {
     
     return (
         <div className="group w-full rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#05893E] cursor-pointer hover:shadow-md">
-           
+           <Link href={`/productDetails/${productData.id}`}>
             <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#F5FAF7] p-2">
                     <p className="p-3 text-2xl object-contain">{productData.image}</p>
@@ -51,6 +52,7 @@ export default function ProductCard({ productData }: ProductCardProps) {
                     {Math.abs(productData.change.pct)}%
                 </div>
             </div>
+            </Link>
         </div>
     )
 }

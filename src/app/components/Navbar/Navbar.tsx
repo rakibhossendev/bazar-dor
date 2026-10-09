@@ -5,7 +5,7 @@ import DateDisplay from "./DisplayDate";
 import { ProductCategoriesDataType, ProductCommonDataType } from "@/TypeScript/Type";
 import NavCategories from "./NavCategories";
 import Marquee from "react-fast-marquee";
-import Link from "next/link";
+import AuthButton from "./AuthButton";
 
 const productsCategoriesAPIResponse = async (): Promise<ProductCategoriesDataType[]> => {
 	const response = await fetch(`${process.env.ALL_CATEGORIES_API}`);
@@ -48,15 +48,8 @@ export default async function Navbar() {
 							</div>
 						</div>
 
-						<div className="flex shrink-0 items-center">
-							<Link href={"/sign-In"}>
-							<button className="cursor-pointer px-2 py-3 text-sm font-bold sm:mx-2 sm:py-4 sm:text-base">সাইন ইন</button>
-							</Link>
-
-							<Link href={"/sign-up"}>
-							<button className="cursor-pointer rounded px-3 py-2 text-sm font-bold text-white shadow-sm shadow-green-600 bg-[#05893E] sm:px-4 sm:text-base">সাইন আপ</button>
-							</Link>
-						</div>
+						<AuthButton/>
+						
 					</div>
 
 				</div>
