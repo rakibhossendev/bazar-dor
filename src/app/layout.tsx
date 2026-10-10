@@ -3,7 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import { ToastContainer } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { AvatarContextProvider, ShowProfileCardContext } from "./context/ProfileAvatar";
 
@@ -29,18 +29,30 @@ export default function RootLayout({
       lang="bn"
       className={`${hindSiliguri.variable} h-full antialiased`}
     >
+
       <body className="min-h-full flex bg-[#FAFCFA] flex-col font-bengali">
-
         <AvatarContextProvider>
-        <Navbar />
-         <ToastContainer />
+          <Navbar />
 
-        {children}
-        
-        <Footer />
+          <ToastContainer
+            position="top-center"
+            autoClose={2500}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            pauseOnHover
+            draggable
+            theme="light"
+            transition={Slide}
+            toastClassName="!rounded-xl !border !border-green-100 !shadow-lg"
+            limit={3}
+          />
+
+          {children}
+          <Footer />
         </AvatarContextProvider>
-
       </body>
+
     </html>
   );
 }

@@ -29,6 +29,7 @@ export default function ProfilePage() {
                 return
             }
             toast.success("name changed successfullt!");
+            updateShowAvatar(false)
             router.push("/")
 
         }catch{

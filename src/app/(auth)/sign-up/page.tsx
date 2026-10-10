@@ -18,11 +18,14 @@ export const handleGoogleSignIn = async () => {
     const data = await signIn.social({
         provider: "google"
     })
+    toast.success("Login successfully")
+
 }
 export const handleGithubSignIn = async () => {
     const data = await signIn.social({
         provider: "github",
     })
+    toast.success("Login successfully")
 }
 export default function SignUpPage() {
     const router = useRouter();
