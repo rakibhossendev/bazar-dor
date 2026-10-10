@@ -14,27 +14,7 @@ interface SignUpFormDataType {
     callbacURL: string;
 }
 
-export const handleGoogleSignIn = async () => {
-    const { error } = await signIn.social({
-        provider: "google",
-        callbackURL: "/",
-    });
 
-    if (error) {
-        toast.error(error.message || "Google login failed");
-    }
-};
-
-export const handleGithubSignIn = async () => {
-    const { error } = await signIn.social({
-        provider: "github",
-        callbackURL: "/",
-    });
-
-    if (error) {
-        toast.error(error.message || "GitHub login failed");
-    }
-};
 export default function SignUpPage() {
     const router = useRouter();
 
@@ -65,6 +45,28 @@ export default function SignUpPage() {
         toast.success(`WELCOME ${getUsersData.name}`)
 
     }
+
+    const handleGoogleSignIn = async () => {
+        const { error } = await signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
+
+        if (error) {
+            toast.error(error.message || "Google login failed");
+        }
+    };
+
+    const handleGithubSignIn = async () => {
+        const { error } = await signIn.social({
+            provider: "github",
+            callbackURL: "/",
+        });
+
+        if (error) {
+            toast.error(error.message || "GitHub login failed");
+        }
+    };
 
 
 
