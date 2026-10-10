@@ -50,7 +50,7 @@ export default function ProductCard({ productData }: ProductCardProps) {
 
                     <div className={`rounded-lg px-2.5 py-1.5 text-sm font-semibold ${productData.change.dir === "up" && productData.change.pct !== 0 ? "bg-red-100 text-red-400" : productData.change.dir === "down" ? "bg-[#E8F7EF] text-[#05893E]" : "bg-gray-100 text-gray-400"}`}>
                         <span className="text-lg">
-                            {productData.change.dir === "up" ? "▲" : productData.change.dir === "down" ? "▼": " "}</span>{" "}
+                            {productData.change.dir === "up" ? "▲" : productData.change.dir === "down" ? "▼": "-"}</span>{" "}
                         {Math.abs(productData.change.pct)}%
                     </div>
 
