@@ -2,16 +2,21 @@
 
 import { signOut, updateUser, useSession } from "@/lib/auth-client"
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { toast } from "react-toastify";
+import { ShowProfileCardContext } from "../context/ProfileAvatar";
 
 export default function ProfilePage() {
     const { data: session} = useSession();
+    const {updateShowAvatar} = useContext(ShowProfileCardContext)
     const router = useRouter();
 
     const hanldeSignOut = () => {
         signOut()
+        updateShowAvatar(false)
         toast.success("SignOut successfully")
         router.push("/")
+
     }
     const handleChangeUser = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

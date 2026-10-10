@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { AvatarContextProvider, ShowProfileCardContext } from "./context/ProfileAvatar";
 
 
 const hindSiliguri = Hind_Siliguri({
@@ -30,10 +31,14 @@ export default function RootLayout({
     >
       <body className="min-h-full flex bg-[#FAFCFA] flex-col font-bengali">
 
+        <AvatarContextProvider>
         <Navbar />
          <ToastContainer />
+
         {children}
+        
         <Footer />
+        </AvatarContextProvider>
 
       </body>
     </html>

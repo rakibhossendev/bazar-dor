@@ -90,7 +90,7 @@ export default function SignInPage() {
             
                     <p className="mt-6 text-center text-sm text-gray-600">
                         অ্যাকাউন্ট নেই? {' '}
-                        <Link className="font-semibold text-[#05893E] hover:underline" href="/login">
+                        <Link className="font-semibold text-[#05893E] hover:underline" href="/sign-up">
                             সাইন আপ করুন?
                         </Link>
                     </p>

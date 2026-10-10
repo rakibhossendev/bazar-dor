@@ -118,14 +118,14 @@ export default function SignUpPage() {
 
                     <p className="mt-6 text-center text-sm text-gray-600">
                         ইতোমধ্যে অ্যাকাউন্ট আছে?{' '}
-                        <Link className="font-semibold text-[#05893E] hover:underline" href="/login">
+                        <Link className="font-semibold text-[#05893E] hover:underline" href="/sign-In">
                             লগইন করুন
                         </Link>
                     </p>
 
                 </div>
 
-                {/* ব্যাক টু হোম লিংক */}
+                
                 <div className="mt-6 text-center">
                     <Link
                         href="/"
