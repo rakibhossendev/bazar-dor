@@ -15,26 +15,26 @@ interface SignUpFormDataType {
 }
 
 export const handleGoogleSignIn = async () => {
-    const data = await signIn.social({
-        provider: "google"
-    })
-    if(data.error?.message){
-        toast.success(data.error.message)
-    }else{
-        toast.success("Login Successfully")
-    }
+    const { error } = await signIn.social({
+        provider: "google",
+        callbackURL: "/",
+    });
 
-}
-export const handleGithubSignIn = async () => {
-    const data = await signIn.social({
-        provider: "github",
-    })
-    if(data.error?.message){
-        toast.success(data.error.message)
-    }else{
-        toast.success("Login Successfully")
+    if (error) {
+        toast.error(error.message || "Google login failed");
     }
-}
+};
+
+export const handleGithubSignIn = async () => {
+    const { error } = await signIn.social({
+        provider: "github",
+        callbackURL: "/",
+    });
+
+    if (error) {
+        toast.error(error.message || "GitHub login failed");
+    }
+};
 export default function SignUpPage() {
     const router = useRouter();
 
@@ -48,7 +48,7 @@ export default function SignUpPage() {
             return;
         }
 
-        const { error, data} = await signUp.email({
+        const { error, data } = await signUp.email({
             name: getUsersData.name,
             email: getUsersData.email,
             password: getUsersData.password,
@@ -61,7 +61,7 @@ export default function SignUpPage() {
             return
         }
         router.push("/")
-        
+
         toast.success(`WELCOME ${getUsersData.name}`)
 
     }
@@ -137,7 +137,7 @@ export default function SignUpPage() {
 
                 </div>
 
-                
+
                 <div className="mt-6 text-center">
                     <Link
                         href="/"
