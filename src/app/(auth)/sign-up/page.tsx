@@ -18,14 +18,22 @@ export const handleGoogleSignIn = async () => {
     const data = await signIn.social({
         provider: "google"
     })
-    toast.success("Login successfully")
+    if(data.error?.message){
+        toast.success(data.error.message)
+    }else{
+        toast.success("Login Successfully")
+    }
 
 }
 export const handleGithubSignIn = async () => {
     const data = await signIn.social({
         provider: "github",
     })
-    toast.success("Login successfully")
+    if(data.error?.message){
+        toast.success(data.error.message)
+    }else{
+        toast.success("Login Successfully")
+    }
 }
 export default function SignUpPage() {
     const router = useRouter();
@@ -40,7 +48,7 @@ export default function SignUpPage() {
             return;
         }
 
-        const { error, data } = await signUp.email({
+        const { error, data} = await signUp.email({
             name: getUsersData.name,
             email: getUsersData.email,
             password: getUsersData.password,
@@ -53,6 +61,7 @@ export default function SignUpPage() {
             return
         }
         router.push("/")
+        
         toast.success(`WELCOME ${getUsersData.name}`)
 
     }
